@@ -36,12 +36,10 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let view2 = PhotoCollectionViewController(collectionViewLayout: layout)
         let nav2 = UINavigationController(rootViewController: view2)
         nav2.tabBarItem = UITabBarItem(title: "Photo", image: nil, tag: 2)
-        viewControllers = [nav1,nav2]
-    }
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if viewController.childViewControllers[0] is PhotoCollectionViewController {
-            
-        }
+        let view3 = FeedController(collectionViewLayout: layout)
+        let nav3 = UINavigationController(rootViewController: view3)
+        nav3.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 3)
+        viewControllers = [nav1,nav2,nav3]
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)

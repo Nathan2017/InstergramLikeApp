@@ -25,6 +25,8 @@
 		D8EA169F1EA5C3270071AB73 /* SharePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA169E1EA5C3270071AB73 /* SharePostController.swift */; };
 		D8EA16A11EA5E1520071AB73 /* PorfileShareImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A01EA5E1520071AB73 /* PorfileShareImageCell.swift */; };
 		D8EA16A31EA5EF4D0071AB73 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A21EA5EF4D0071AB73 /* Post.swift */; };
+		D8EA16A51EA6126C0071AB73 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A41EA6126C0071AB73 /* FeedController.swift */; };
+		D8EA16A71EA615A20071AB73 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A61EA615A20071AB73 /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		D8EA169E1EA5C3270071AB73 /* SharePostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePostController.swift; sourceTree = "<group>"; };
 		D8EA16A01EA5E1520071AB73 /* PorfileShareImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PorfileShareImageCell.swift; sourceTree = "<group>"; };
 		D8EA16A21EA5EF4D0071AB73 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D8EA16A41EA6126C0071AB73 /* FeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
+		D8EA16A61EA615A20071AB73 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				D8EA169E1EA5C3270071AB73 /* SharePostController.swift */,
 				D8EA16A01EA5E1520071AB73 /* PorfileShareImageCell.swift */,
 				D8EA16A21EA5EF4D0071AB73 /* Post.swift */,
+				D8EA16A41EA6126C0071AB73 /* FeedController.swift */,
+				D8EA16A61EA615A20071AB73 /* FeedCell.swift */,
 			);
 			path = Instragram20170417;
 			sourceTree = "<group>";
@@ -260,8 +266,10 @@
 				D8EA169D1EA5AC940071AB73 /* PhotoCell.swift in Sources */,
 				D8EA169F1EA5C3270071AB73 /* SharePostController.swift in Sources */,
 				D8EA169B1EA5A6F80071AB73 /* PhotoHeaderCell.swift in Sources */,
+				D8EA16A71EA615A20071AB73 /* FeedCell.swift in Sources */,
 				D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */,
 				D8EA16971EA4A4060071AB73 /* headercell.swift in Sources */,
+				D8EA16A51EA6126C0071AB73 /* FeedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
