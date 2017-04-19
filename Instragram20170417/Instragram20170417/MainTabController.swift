@@ -38,12 +38,18 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let layout3 = UICollectionViewFlowLayout()
         let view3 = FeedController(collectionViewLayout: layout3)
         let nav3 = UINavigationController(rootViewController: view3)
+        
         nav3.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 3)
-        viewControllers = [nav3,nav2,nav1]
+        let layout4 = UICollectionViewFlowLayout()
+        let view4 = SearchController(collectionViewLayout: layout4)
+        let nav4 = UINavigationController(rootViewController: view4)
+        
+        nav4.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 4)
+        viewControllers = [nav3,nav4,nav2,nav1]
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)
-        if index == 1 {
+        if index == 2 {
             let layout = UICollectionViewFlowLayout()
             let photoview = PhotoCollectionViewController(collectionViewLayout: layout)
             let nav = UINavigationController(rootViewController: photoview)
