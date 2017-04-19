@@ -27,6 +27,7 @@
 		D8EA16A31EA5EF4D0071AB73 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A21EA5EF4D0071AB73 /* Post.swift */; };
 		D8EA16A51EA6126C0071AB73 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A41EA6126C0071AB73 /* FeedController.swift */; };
 		D8EA16A71EA615A20071AB73 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A61EA615A20071AB73 /* FeedCell.swift */; };
+		D8EA16A91EA729610071AB73 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EA16A81EA729610071AB73 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D8EA16A21EA5EF4D0071AB73 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D8EA16A41EA6126C0071AB73 /* FeedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		D8EA16A61EA615A20071AB73 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		D8EA16A81EA729610071AB73 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				D8EA16A21EA5EF4D0071AB73 /* Post.swift */,
 				D8EA16A41EA6126C0071AB73 /* FeedController.swift */,
 				D8EA16A61EA615A20071AB73 /* FeedCell.swift */,
+				D8EA16A81EA729610071AB73 /* User.swift */,
 			);
 			path = Instragram20170417;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				D8EA16A11EA5E1520071AB73 /* PorfileShareImageCell.swift in Sources */,
 				D8D26B181EA44FCF00581EDD /* Extension.swift in Sources */,
 				D8A4A7941EA44EA6005B431D /* RegisterController.swift in Sources */,
+				D8EA16A91EA729610071AB73 /* User.swift in Sources */,
 				D8EA16A31EA5EF4D0071AB73 /* Post.swift in Sources */,
 				D8EA16991EA59CA90071AB73 /* PhotoCollectionViewController.swift in Sources */,
 				D8D26B1E1EA47F3400581EDD /* ProfileViewController.swift in Sources */,

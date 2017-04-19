@@ -9,6 +9,35 @@
 import UIKit
 
 class headercell: UICollectionViewCell {
+    var user:User? {
+        didSet{
+            username.text = user?.username
+            guard let imageurl = user?.imageurl else {return}
+            if let cacheimage = imagecache[imageurl] {
+                self.imageview.image = cacheimage
+            }
+            else
+            {
+                guard let url = URL(string: imageurl) else {return}
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    if url.absoluteString != self.user?.imageurl {
+                        return
+                    }
+                    guard let data = data else {return}
+                    let image = UIImage(data: data)
+                    imagecache[url.absoluteString] = image
+                    DispatchQueue.main.async {
+                        self.imageview.image = image
+                    }
+                    
+                    }.resume()
+            }
+        }
+    }
     let sepview:UIView = {
        let sv = UIView()
         sv.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)

@@ -124,6 +124,7 @@ class LoginViewController: UIViewController {
             }
             print("Login Success")
             guard let maintab = UIApplication.shared.keyWindow?.rootViewController as? MainTabController else {return}
+            maintab.selectedIndex = 0
             maintab.setupview()
             self.dismiss(animated: true, completion: nil)
         })

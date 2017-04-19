@@ -14,7 +14,6 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         if FIRAuth.auth()?.currentUser == nil {
-            print("No User")
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: LoginViewController())
                 self.present(nav, animated: true, completion: nil)
@@ -30,16 +29,17 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
     func setupview(){
         let layout = UICollectionViewFlowLayout()
         let view1 = ProfileViewController(collectionViewLayout: layout)
-        //view1.navigationItem.title = "Profile"
         let nav1 = UINavigationController(rootViewController: view1)
         nav1.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
-        let view2 = PhotoCollectionViewController(collectionViewLayout: layout)
+        let layout2 = UICollectionViewFlowLayout()
+        let view2 = PhotoCollectionViewController(collectionViewLayout: layout2)
         let nav2 = UINavigationController(rootViewController: view2)
         nav2.tabBarItem = UITabBarItem(title: "Photo", image: nil, tag: 2)
-        let view3 = FeedController(collectionViewLayout: layout)
+        let layout3 = UICollectionViewFlowLayout()
+        let view3 = FeedController(collectionViewLayout: layout3)
         let nav3 = UINavigationController(rootViewController: view3)
         nav3.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 3)
-        viewControllers = [nav1,nav2,nav3]
+        viewControllers = [nav3,nav2,nav1]
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)

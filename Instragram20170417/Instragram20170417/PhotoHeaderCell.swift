@@ -12,7 +12,7 @@ class PhotoHeaderCell: UICollectionViewCell {
     
     let imageview:UIImageView = {
        let iv = UIImageView()
-        iv.backgroundColor = UIColor.green
+        //iv.backgroundColor = UIColor.green
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
@@ -23,7 +23,9 @@ class PhotoHeaderCell: UICollectionViewCell {
         addSubview(imageview)
         imageview.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0)
     }
-    
+    override func prepareForReuse() {
+        imageview.image = nil
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

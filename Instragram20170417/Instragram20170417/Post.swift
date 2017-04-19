@@ -10,7 +10,11 @@ import UIKit
 
 struct Post {
     let imageurl:String
-    init(dictionary:[String:Any]) {
+    let caption:String
+    let user:User
+    init(user:User,dictionary:[String:Any]) {
         self.imageurl = dictionary["postimageurl"] as? String ?? "'"
+        self.caption = dictionary["postcaption"] as? String ?? ""
+        self.user = user
     }
 }

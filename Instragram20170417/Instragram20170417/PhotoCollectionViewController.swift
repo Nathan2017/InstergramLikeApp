@@ -28,26 +28,19 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
     var head:PhotoHeaderCell?
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let head = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerid, for: indexPath) as! PhotoHeaderCell
-        head.imageview.image = selectedimage
         if let selectimage = selectedimage {
             if let index = self.photocollection.index(of: selectimage){
                 let selectedasset = self.assetcollection[index]
 
                     let manager = PHImageManager.default()
-                    let option = PHImageRequestOptions()
-               // print(view.frame.width)
-                //print(PHImageManagerMaximumSize.height)
-                DispatchQueue.global(qos: .background).async {
-                    manager.requestImage(for: selectedasset, targetSize: CGSize(width:1000,height:1000), contentMode: .aspectFill, options: nil) { (image, info) in
+                
+                    manager.requestImage(for: selectedasset, targetSize: CGSize(width:600,height:600), contentMode: .aspectFit, options: nil) { (image, info) in
                         guard let image = image else {return}
-                        DispatchQueue.main.async {
                              head.imageview.image = image
-                        }
+                        
                        
                         
-                        
-                    }
-                }
+                        }
                 
                 
 
@@ -75,6 +68,7 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
     override var prefersStatusBarHidden: Bool{
         return true
     }
+    
     func dismissview(){
         self.dismiss(animated: true , completion: nil)
     }
@@ -93,7 +87,7 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
     }
     func fetchphoto(){
         let fetchoption = PHFetchOptions()
-        fetchoption.fetchLimit = 20
+        fetchoption.fetchLimit = 30
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchoption.sortDescriptors = [sortDescriptor]
         let photos = PHAsset.fetchAssets(with: .image, options: fetchoption)
@@ -104,15 +98,18 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
                 let option = PHImageRequestOptions()
                 option.isSynchronous = true
                 manager.requestImage(for: asset, targetSize: CGSize(width:200,height:200), contentMode: .aspectFit, options: option, resultHandler: { (image, info) in
-                    guard let image = image else {return}
+                    if let image = image {
+                        self.photocollection.append(image)
+                        self.assetcollection.append(asset)
+                    }
                     
-                    self.photocollection.append(image)
-                    self.assetcollection.append(asset)
+                    
                      if self.selectedimage == nil {
+                        
                      self.selectedimage = image
                      }
                 })
-                if count == self.photocollection.count - 1 {
+                if count == photos.count - 1 {
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
@@ -125,6 +122,8 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
         
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: index, at: .bottom, animated: true)
         self.selectedimage = self.photocollection[indexPath.item]
         self.collectionView?.reloadData()
         

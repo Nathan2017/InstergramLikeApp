@@ -42,13 +42,15 @@ class SharePostController: UIViewController {
         postview.addSubview(imageview)
         imageview.anchor(top: postview.topAnchor, left: postview.leftAnchor, right: nil, bottom: postview.bottomAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 0, paddingBottom: -12, width: 100-16, height: 0)
         postview.addSubview(usercaption)
-        usercaption.anchor(top: postview.topAnchor, left: imageview.rightAnchor, right: postview.rightAnchor, bottom: postview.bottomAnchor, paddingTop: 0, paddingLeft: 8, paddingRight: 8, paddingBottom: -8, width: 0, height: 0)
+        usercaption.anchor(top: postview.topAnchor, left: imageview.rightAnchor, right: postview.rightAnchor, bottom: postview.bottomAnchor, paddingTop: 0, paddingLeft: 8, paddingRight: -8, paddingBottom: -8, width: 0, height: 0)
     }
     func handleshare(){
         navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
+        usercaption.resignFirstResponder()
         let uid = NSUUID().uuidString
         guard let sharephoto = self.sharephoto else {return}
-        guard let imagejpg = UIImageJPEGRepresentation(sharephoto, 0.3) else {return}
+        guard let imagejpg = UIImageJPEGRepresentation(sharephoto, 0.5) else {return}
         FIRStorage.storage().reference().child("posts").child(uid).put(imagejpg, metadata: nil) { (metadata, error) in
             if let error = error {
                 print(error)
@@ -57,7 +59,7 @@ class SharePostController: UIViewController {
             }
             print("Save Post Photo Success")
             guard let usercaption = self.usercaption.text else {return}
-            var dict = ["postimageurl":metadata?.downloadURL()?.absoluteString,"postcaption":usercaption]
+            let dict = ["postimageurl":metadata?.downloadURL()?.absoluteString,"postcaption":usercaption,"creationdate":NSDate().timeIntervalSince1970] as? [String:Any]
             guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
             FIRDatabase.database().reference().child("posts").child(uid).childByAutoId().setValue(dict, withCompletionBlock: { (error, ref) in
                 if let error = error {
