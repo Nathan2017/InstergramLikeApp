@@ -30,22 +30,27 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let layout = UICollectionViewFlowLayout()
         let view1 = ProfileViewController(collectionViewLayout: layout)
         let nav1 = UINavigationController(rootViewController: view1)
-        nav1.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
+        nav1.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "profile"), tag: 1)
         let layout2 = UICollectionViewFlowLayout()
         let view2 = PhotoCollectionViewController(collectionViewLayout: layout2)
         let nav2 = UINavigationController(rootViewController: view2)
-        nav2.tabBarItem = UITabBarItem(title: "Photo", image: nil, tag: 2)
+        nav2.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "photo"), tag: 2)
         let layout3 = UICollectionViewFlowLayout()
         let view3 = FeedController(collectionViewLayout: layout3)
         let nav3 = UINavigationController(rootViewController: view3)
         
-        nav3.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 3)
+        nav3.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "news"), tag: 3)
         let layout4 = UICollectionViewFlowLayout()
         let view4 = SearchController(collectionViewLayout: layout4)
         let nav4 = UINavigationController(rootViewController: view4)
         
-        nav4.tabBarItem = UITabBarItem(title: "Search", image: nil, tag: 4)
+        nav4.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "search"), tag: 4)
+        UITabBar.appearance().tintColor = UIColor.black
         viewControllers = [nav3,nav4,nav2,nav1]
+        guard let tabbaritem = tabBar.items else {return}
+        for item in tabbaritem {
+            item.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0)
+        }
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)

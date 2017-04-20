@@ -62,7 +62,7 @@ class SearchController: UICollectionViewController,UICollectionViewDelegateFlowL
         searchcontrolrightAnchor = searchcontrol.rightAnchor.constraint(equalTo: (navv?.rightAnchor)!, constant: -12)
         searchcontrolrightAnchor?.isActive = true
         navv?.addSubview(cancelbutton)
-        cancelbutton.anchor(top: searchcontrol.topAnchor, left: nil, right: navv?.rightAnchor, bottom: searchcontrol.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: -12, paddingBottom: 0, width: 0, height: 0)
+        cancelbutton.anchor(top: navv?.topAnchor, left: nil, right: navv?.rightAnchor, bottom: navv?.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: -12, paddingBottom: 0, width: 0, height: 0)
         cancelbuttonwidthanchor = cancelbutton.widthAnchor.constraint(equalToConstant: 0)
         cancelbuttonwidthanchor?.isActive = true
         self.collectionView!.register(UserSearchCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -75,8 +75,11 @@ class SearchController: UICollectionViewController,UICollectionViewDelegateFlowL
     }
     func dismisssearch(){
         searchcontrol.resignFirstResponder()
+        searchcontrol.text = nil
         cancelbuttonwidthanchor?.constant = 0
         searchcontrolrightAnchor?.constant = -12
+        self.filteruser = self.users
+        self.collectionView?.reloadData()
         self.view.layoutIfNeeded()
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
