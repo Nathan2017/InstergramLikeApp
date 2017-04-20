@@ -68,6 +68,8 @@ class SharePostController: UIViewController {
                     return
                 }
                 print("Successfully save to DB")
+                let maintab = UIApplication.shared.keyWindow?.rootViewController as? MainTabController
+                maintab?.selectedIndex = 0
                 self.dismiss(animated: true, completion: nil)
             })
         }

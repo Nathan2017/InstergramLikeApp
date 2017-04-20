@@ -22,7 +22,8 @@ class PhotoCollectionViewController: UICollectionViewController,UICollectionView
         collectionView?.backgroundColor = UIColor.white
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView?.register(PhotoHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerid)
-        
+       //collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(30, 0, 0, 0)
+        collectionView?.showsVerticalScrollIndicator = false
         fetchphoto()
     }
     var head:PhotoHeaderCell?

@@ -19,6 +19,7 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         super.viewDidLoad()
         navigationItem.title = "News Feed"
         collectionView?.alwaysBounceVertical = true
+        collectionView?.showsVerticalScrollIndicator = false
         collectionView?.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         self.collectionView!.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         fetchallpost()
@@ -52,7 +53,7 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         guard let userid = FIRAuth.auth()?.currentUser?.uid else {return}
         FIRDatabase.database().reference().child("users").child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dict2  = snapshot.value as? [String:Any] else {return}
-            self.user = User(dictionary: dict2)
+            self.user = User(uid:userid,dictionary: dict2)
             FIRDatabase.database().reference().child("posts").child(userid).observe(.childAdded, with: { (snapshot) in
                 guard let dict = snapshot.value as? [String:Any] else {return}
                 guard let user = self.user else {return}

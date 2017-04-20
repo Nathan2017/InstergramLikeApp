@@ -10,25 +10,35 @@ import UIKit
 import Firebase
 class ProfileViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     var user:User?
+    var userid:String?
    var posts = [Post]()
+    var barbuttonitem:UIBarButtonItem?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = UIColor.white
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.register(headercell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerid")
         collectionView?.register(PorfileShareImageCell.self, forCellWithReuseIdentifier: "cellid")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(loggigout))
+        if let userrid = self.userid {
+             barbuttonitem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        }
+        else
+        {
+            barbuttonitem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(loggigout))
+        }
+        
+        navigationItem.rightBarButtonItem = barbuttonitem
         
         
         fetchpost()
     }
     func fetchpost(){
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+        guard let uid = userid ?? FIRAuth.auth()?.currentUser?.uid else {return}
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with:
             { (snapshot) in
                
                 guard let dict = snapshot.value as? [String:Any] else {return}
-                self.user = User(dictionary: dict)
+                self.user = User(uid:uid,dictionary: dict)
                 DispatchQueue.main.async {
                     self.navigationItem.title = self.user?.username
                     self.collectionView?.reloadData()
