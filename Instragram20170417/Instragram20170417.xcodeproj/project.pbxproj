@@ -83,6 +83,79 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D866E12E1EA89BAE0024E9D7 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				D8A4A7931EA44EA6005B431D /* RegisterController.swift */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		D866E12F1EA89BC70024E9D7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D8D26B1F1EA491D200581EDD /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D866E1301EA89BD50024E9D7 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D8D26B1B1EA471D700581EDD /* MainTabController.swift */,
+			);
+			name = MainTabBar;
+			sourceTree = "<group>";
+		};
+		D866E1311EA89BEE0024E9D7 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				D8D26B1D1EA47F3400581EDD /* ProfileViewController.swift */,
+				D8EA16961EA4A4060071AB73 /* headercell.swift */,
+				D8EA16A01EA5E1520071AB73 /* PorfileShareImageCell.swift */,
+			);
+			name = ProfileView;
+			sourceTree = "<group>";
+		};
+		D866E1321EA89C110024E9D7 /* PhotoCollection */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA169E1EA5C3270071AB73 /* SharePostController.swift */,
+				D8EA16981EA59CA90071AB73 /* PhotoCollectionViewController.swift */,
+				D8EA169A1EA5A6F80071AB73 /* PhotoHeaderCell.swift */,
+				D8EA169C1EA5AC940071AB73 /* PhotoCell.swift */,
+			);
+			name = PhotoCollection;
+			sourceTree = "<group>";
+		};
+		D866E1331EA89C360024E9D7 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				D866E12A1EA7631E0024E9D7 /* SearchController.swift */,
+				D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */,
+			);
+			name = SearchView;
+			sourceTree = "<group>";
+		};
+		D866E1341EA89C490024E9D7 /* FeedView */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA16A41EA6126C0071AB73 /* FeedController.swift */,
+				D8EA16A61EA615A20071AB73 /* FeedCell.swift */,
+			);
+			name = FeedView;
+			sourceTree = "<group>";
+		};
+		D866E1351EA89C6F0024E9D7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D8D26B171EA44FCF00581EDD /* Extension.swift */,
+				D8EA16A21EA5EF4D0071AB73 /* Post.swift */,
+				D8EA16A81EA729610071AB73 /* User.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		D8A4A7851EA44EA6005B431D = {
 			isa = PBXGroup;
 			children = (
@@ -104,29 +177,20 @@
 		D8A4A7901EA44EA6005B431D /* Instragram20170417 */ = {
 			isa = PBXGroup;
 			children = (
+				D866E1341EA89C490024E9D7 /* FeedView */,
+				D866E1331EA89C360024E9D7 /* SearchView */,
+				D866E1321EA89C110024E9D7 /* PhotoCollection */,
+				D866E1311EA89BEE0024E9D7 /* ProfileView */,
+				D866E1301EA89BD50024E9D7 /* MainTabBar */,
+				D866E12F1EA89BC70024E9D7 /* Login */,
+				D866E12E1EA89BAE0024E9D7 /* Register */,
+				D866E1351EA89C6F0024E9D7 /* Extension */,
 				D8A4A7911EA44EA6005B431D /* AppDelegate.swift */,
-				D8A4A7931EA44EA6005B431D /* RegisterController.swift */,
 				D8A4A7951EA44EA6005B431D /* Main.storyboard */,
 				D8A4A7981EA44EA6005B431D /* Assets.xcassets */,
 				D8A4A79A1EA44EA6005B431D /* LaunchScreen.storyboard */,
 				D8A4A79D1EA44EA6005B431D /* Info.plist */,
-				D8D26B171EA44FCF00581EDD /* Extension.swift */,
 				D8D26B191EA45A4500581EDD /* GoogleService-Info.plist */,
-				D8D26B1B1EA471D700581EDD /* MainTabController.swift */,
-				D8D26B1D1EA47F3400581EDD /* ProfileViewController.swift */,
-				D8D26B1F1EA491D200581EDD /* LoginViewController.swift */,
-				D8EA16961EA4A4060071AB73 /* headercell.swift */,
-				D8EA16981EA59CA90071AB73 /* PhotoCollectionViewController.swift */,
-				D8EA169A1EA5A6F80071AB73 /* PhotoHeaderCell.swift */,
-				D8EA169C1EA5AC940071AB73 /* PhotoCell.swift */,
-				D8EA169E1EA5C3270071AB73 /* SharePostController.swift */,
-				D8EA16A01EA5E1520071AB73 /* PorfileShareImageCell.swift */,
-				D8EA16A21EA5EF4D0071AB73 /* Post.swift */,
-				D8EA16A41EA6126C0071AB73 /* FeedController.swift */,
-				D8EA16A61EA615A20071AB73 /* FeedCell.swift */,
-				D8EA16A81EA729610071AB73 /* User.swift */,
-				D866E12A1EA7631E0024E9D7 /* SearchController.swift */,
-				D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */,
 			);
 			path = Instragram20170417;
 			sourceTree = "<group>";
