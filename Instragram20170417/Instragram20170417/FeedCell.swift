@@ -23,7 +23,7 @@ class FeedCell: UICollectionViewCell {
     }
     let imageview:UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.brown
+      
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 20
         iv.clipsToBounds = true
@@ -39,14 +39,12 @@ class FeedCell: UICollectionViewCell {
     }()
     let postimage:UIImageView = {
         let iv = UIImageView()
-        //iv.backgroundColor = UIColor.green
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
     }()
     var username:UILabel = {
        let un = UILabel()
-        //un.backgroundColor = UIColor.blue
         un.font = UIFont.boldSystemFont(ofSize: 14)
         return un
     }()
@@ -54,6 +52,7 @@ class FeedCell: UICollectionViewCell {
        let cp = UITextView()
         cp.backgroundColor = UIColor.clear
         cp.font = UIFont.systemFont(ofSize: 14)
+        cp.isUserInteractionEnabled = false
         return cp
         
     }()
@@ -109,6 +108,8 @@ class FeedCell: UICollectionViewCell {
     }
     override func prepareForReuse() {
         postimage.image = nil
+        imageview.image = nil
+        username.text = nil
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

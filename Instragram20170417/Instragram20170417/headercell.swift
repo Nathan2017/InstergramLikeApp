@@ -50,22 +50,50 @@ class headercell: UICollectionViewCell {
             FIRDatabase.database().reference().observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild("following")
                 {
-                    FIRDatabase.database().reference().child("following").child(currentuid).observeSingleEvent(of: .value, with: { (snapshot) in
-                        //print(snapshot.value)
-                        guard let dict = snapshot.value as? [String:Any] else {return}
-                        
-                        guard let followinguseruid = self.user?.uid else {return}
-                        if let followingstatus = dict[followinguseruid] as? Int
-                        {
-                            self.editprofilebutton.setTitle("Unfollow", for: .normal)
+//                    FIRDatabase.database().reference().child("following").child(currentuid).observeSingleEvent(of: .value, with: { (snapshot) in
+//                        //print(snapshot.value)
+//                        guard let dict = snapshot.value as? [String:Any] else {return}
+//                        
+//                        guard let followinguseruid = self.user?.uid else {return}
+//                        if let followingstatus = dict[followinguseruid] as? Int
+//                        {
+//                            self.editprofilebutton.setTitle("Unfollow", for: .normal)
+//                            
+//                            
+//                        }
+//                        else
+//                        {
+//                            self.editprofilebutton.setTitle("Follow", for: .normal)
+//                        }
+//                    })
+                    FIRDatabase.database().reference().child("following").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild(currentuid) {
+                                                FIRDatabase.database().reference().child("following").child(currentuid).observeSingleEvent(of: .value, with: { (snapshot) in
+                                                    //print(snapshot.value)
+                                                    guard let dict = snapshot.value as? [String:Any] else {return}
+                            
+                                                    guard let followinguseruid = self.user?.uid else {return}
+                                                    if let followingstatus = dict[followinguseruid] as? Int
+                                                    {
+                                                        self.editprofilebutton.setTitle("Unfollow", for: .normal)
                             
                             
+                                                    }
+                                                    else
+                                                    {
+                                                        self.editprofilebutton.setTitle("Follow", for: .normal)
+                                                    }
+                                                })
+
                         }
                         else
                         {
                             self.editprofilebutton.setTitle("Follow", for: .normal)
                         }
+                    }, withCancel: { (error) in
+                        return
                     })
+
                     
                 }
                 else

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor?,left:NSLayoutXAxisAnchor?,right:NSLayoutXAxisAnchor?,bottom:NSLayoutYAxisAnchor?,paddingTop:CGFloat,paddingLeft:CGFloat,paddingRight:CGFloat,paddingBottom:CGFloat,width:CGFloat,height:CGFloat)
     {
@@ -52,5 +52,15 @@ extension UIView {
             heightAnchor.constraint(equalTo: height, multiplier: ymultiplier).isActive = true
         }
 
+    }
+}
+extension FIRDatabase {
+    func fetchuserpost(userid:String,completetion:@escaping (User)->()){
+        FIRDatabase.database().reference().child("users").child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dict = snapshot.value as? [String:Any] else {return}
+            let user = User(uid: userid, dictionary: dict)
+            print(dict)
+            completetion(user)
+        })
     }
 }

@@ -18,7 +18,6 @@ class UserSearchCell: UICollectionViewCell {
     }
     let imageview:UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.brown
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 30
         iv.clipsToBounds = true
@@ -66,7 +65,9 @@ class UserSearchCell: UICollectionViewCell {
                 }.resume()
         }
     }
-
+    override func prepareForReuse() {
+        imageview.image = nil
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imageview)

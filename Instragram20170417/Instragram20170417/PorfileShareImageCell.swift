@@ -39,7 +39,6 @@ class PorfileShareImageCell: UICollectionViewCell {
     }
     let imageview:UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.red
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv

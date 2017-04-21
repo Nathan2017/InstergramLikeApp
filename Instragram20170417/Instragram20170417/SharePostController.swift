@@ -21,7 +21,6 @@ class SharePostController: UIViewController {
     }()
     let imageview:UIImageView = {
        let iv = UIImageView()
-        iv.backgroundColor = UIColor.brown
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
@@ -42,7 +41,11 @@ class SharePostController: UIViewController {
         postview.addSubview(imageview)
         imageview.anchor(top: postview.topAnchor, left: postview.leftAnchor, right: nil, bottom: postview.bottomAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 0, paddingBottom: -12, width: 100-16, height: 0)
         postview.addSubview(usercaption)
-        usercaption.anchor(top: postview.topAnchor, left: imageview.rightAnchor, right: postview.rightAnchor, bottom: postview.bottomAnchor, paddingTop: 0, paddingLeft: 8, paddingRight: -8, paddingBottom: -8, width: 0, height: 0)
+        usercaption.anchor(top: postview.topAnchor, left: imageview.rightAnchor, right: postview.rightAnchor, bottom: postview.bottomAnchor, paddingTop: 0, paddingLeft: 8, paddingRight: 0, paddingBottom: 0, width: 0, height: 0)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismisscaption)))
+    }
+    func dismisscaption(){
+        usercaption.resignFirstResponder()
     }
     func handleshare(){
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -71,6 +74,8 @@ class SharePostController: UIViewController {
                 let maintab = UIApplication.shared.keyWindow?.rootViewController as? MainTabController
                 maintab?.selectedIndex = 0
                 self.dismiss(animated: true, completion: nil)
+                let name = NSNotification.Name(rawValue: "autorefresh")
+                NotificationCenter.default.post(name: name, object: nil)
             })
         }
     }

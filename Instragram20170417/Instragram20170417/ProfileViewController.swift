@@ -47,7 +47,9 @@ class ProfileViewController: UICollectionViewController,UICollectionViewDelegate
                     guard let dict = snapshot.value as? [String:Any] else {return}
                     guard let user = self.user else {return}
                     self.posts.append(Post(user:user,dictionary: dict))
-                    self.posts = self.posts.reversed()
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.date.compare(p2.date) == .orderedDescending
+                    })
                     DispatchQueue.main.async {
                        self.collectionView?.reloadData()
                     }
