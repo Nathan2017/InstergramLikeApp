@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C5EA0202BBC1D52A70ECB256 /* Pods_Instragram20170417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31DC601C5F5FE2E53371AA3A /* Pods_Instragram20170417.framework */; };
+		D81CC0611EADE70500798F09 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0601EADE70500798F09 /* ChatController.swift */; };
+		D81CC0631EADE8EE00798F09 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0621EADE8EE00798F09 /* ChatCell.swift */; };
+		D81CC0651EADEC3000798F09 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0641EADEC3000798F09 /* ChatView.swift */; };
 		D866E12B1EA7631E0024E9D7 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12A1EA7631E0024E9D7 /* SearchController.swift */; };
 		D866E12D1EA766F50024E9D7 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */; };
 		D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4A7911EA44EA6005B431D /* AppDelegate.swift */; };
@@ -36,6 +39,9 @@
 		1637A88E17DEC936C9AF3A9C /* Pods-Instragram20170417.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instragram20170417.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instragram20170417/Pods-Instragram20170417.debug.xcconfig"; sourceTree = "<group>"; };
 		29AFF8DE6C2A1183A3A1F84C /* Pods-Instragram20170417.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instragram20170417.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instragram20170417/Pods-Instragram20170417.release.xcconfig"; sourceTree = "<group>"; };
 		31DC601C5F5FE2E53371AA3A /* Pods_Instragram20170417.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instragram20170417.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D81CC0601EADE70500798F09 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		D81CC0621EADE8EE00798F09 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		D81CC0641EADEC3000798F09 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		D866E12A1EA7631E0024E9D7 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		D8A4A78E1EA44EA6005B431D /* Instragram20170417.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instragram20170417.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +197,9 @@
 				D8A4A79A1EA44EA6005B431D /* LaunchScreen.storyboard */,
 				D8A4A79D1EA44EA6005B431D /* Info.plist */,
 				D8D26B191EA45A4500581EDD /* GoogleService-Info.plist */,
+				D81CC0601EADE70500798F09 /* ChatController.swift */,
+				D81CC0621EADE8EE00798F09 /* ChatCell.swift */,
+				D81CC0641EADEC3000798F09 /* ChatView.swift */,
 			);
 			path = Instragram20170417;
 			sourceTree = "<group>";
@@ -332,6 +341,7 @@
 				D8EA16A11EA5E1520071AB73 /* PorfileShareImageCell.swift in Sources */,
 				D8D26B181EA44FCF00581EDD /* Extension.swift in Sources */,
 				D8A4A7941EA44EA6005B431D /* RegisterController.swift in Sources */,
+				D81CC0651EADEC3000798F09 /* ChatView.swift in Sources */,
 				D866E12D1EA766F50024E9D7 /* UserSearchCell.swift in Sources */,
 				D8EA16A91EA729610071AB73 /* User.swift in Sources */,
 				D8EA16A31EA5EF4D0071AB73 /* Post.swift in Sources */,
@@ -341,6 +351,8 @@
 				D8EA169D1EA5AC940071AB73 /* PhotoCell.swift in Sources */,
 				D866E12B1EA7631E0024E9D7 /* SearchController.swift in Sources */,
 				D8EA169F1EA5C3270071AB73 /* SharePostController.swift in Sources */,
+				D81CC0631EADE8EE00798F09 /* ChatCell.swift in Sources */,
+				D81CC0611EADE70500798F09 /* ChatController.swift in Sources */,
 				D8EA169B1EA5A6F80071AB73 /* PhotoHeaderCell.swift in Sources */,
 				D8EA16A71EA615A20071AB73 /* FeedCell.swift in Sources */,
 				D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */,

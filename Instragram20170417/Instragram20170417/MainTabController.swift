@@ -45,8 +45,16 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let nav4 = UINavigationController(rootViewController: view4)
         
         nav4.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "search"), tag: 4)
+        
+        let layout5 = UICollectionViewFlowLayout()
+        let view5 = ChatController(collectionViewLayout: layout5)
+        let nav5 = UINavigationController(rootViewController: view5)
+        
+        nav5.tabBarItem = UITabBarItem(title: "Chats", image: nil, tag: 5)
+
         UITabBar.appearance().tintColor = UIColor.black
-        viewControllers = [nav3,nav4,nav2,nav1]
+        
+        viewControllers = [nav3,nav4,nav5,nav2,nav1]
         guard let tabbaritem = tabBar.items else {return}
         for item in tabbaritem {
             item.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0)
@@ -54,7 +62,7 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.index(of: viewController)
-        if index == 2 {
+        if index == 3 {
             let layout = UICollectionViewFlowLayout()
             let photoview = PhotoCollectionViewController(collectionViewLayout: layout)
             let nav = UINavigationController(rootViewController: photoview)

@@ -59,7 +59,6 @@ extension FIRDatabase {
         FIRDatabase.database().reference().child("users").child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dict = snapshot.value as? [String:Any] else {return}
             let user = User(uid: userid, dictionary: dict)
-            print(dict)
             completetion(user)
         })
     }
