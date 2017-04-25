@@ -13,6 +13,8 @@ private let reuseIdentifier = "Cell"
 class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     var numchat = [String]()
     var followedusers = [User]()
+    var messagedicitonary = [String:Message]()
+    var messages = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Chats"
@@ -30,14 +32,17 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return followedusers.count
+        return self.messages.count
         
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatCell
-    
-        cell.user = followedusers[indexPath.item]
+        
+        cell.message = self.messages[indexPath.item]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -47,8 +52,10 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
         return 0
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let chatview = ChatView(collectionViewLayout: UICollectionViewFlowLayout())
-        chatview.user = followedusers[indexPath.item]
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let chatview = ChatView(collectionViewLayout: layout)
+        chatview.userid = FIRAuth.auth()?.currentUser?.uid == self.messages[indexPath.item].toId ? self.messages[indexPath.item].fromId : self.messages[indexPath.item].toId
         self.navigationController?.pushViewController( chatview, animated: true)
     }
     func fetchfollowuser(){
@@ -69,16 +76,33 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     func fetchmessage(){
         guard let userid = FIRAuth.auth()?.currentUser?.uid else {return}
-        FIRDatabase.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
-           guard let dict = snapshot.value as? [String:Any] else {return}
-            dict.forEach({ (key,value) in
-                FIRDatabase.database().fetchuserpost(userid: key, completetion: { (user) in
-                    self.followedusers.append(user)
-                    self.collectionView?.reloadData()
-                })
-            })
+        let ref = FIRDatabase.database().reference().child("user-messages").child(userid)
+        ref.observe(.childAdded, with: { (snapshot) in
+            let mid = snapshot.key
+            FIRDatabase.database().reference().child("messages").child(mid).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let medictionary = snapshot.value as? [String:Any] else {return}
+                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["fromId"] as? String : medictionary["toId"] as? String else {return}
+                self.messagedicitonary[toid] = Message(dictionary: medictionary)
+                
+                self.timer?.invalidate()
+                self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.handlereload), userInfo: nil, repeats: false)
+                
+            }, withCancel: nil)
             
         })
+        
+        
+    }
+    var timer: Timer?
+    func handlereload(){
+        self.messages = Array(self.messagedicitonary.values)
+        self.messages.sort(by: { (m1, m2) -> Bool in
+            return m1.timestamp > m2.timestamp
+        })
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+        
     }
 
 

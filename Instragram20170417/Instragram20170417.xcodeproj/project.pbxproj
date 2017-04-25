@@ -11,6 +11,8 @@
 		D81CC0611EADE70500798F09 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0601EADE70500798F09 /* ChatController.swift */; };
 		D81CC0631EADE8EE00798F09 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0621EADE8EE00798F09 /* ChatCell.swift */; };
 		D81CC0651EADEC3000798F09 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0641EADEC3000798F09 /* ChatView.swift */; };
+		D81CC0671EAED9DF00798F09 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0661EAED9DF00798F09 /* Message.swift */; };
+		D81CC0691EAF049500798F09 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0681EAF049500798F09 /* MessageCell.swift */; };
 		D866E12B1EA7631E0024E9D7 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12A1EA7631E0024E9D7 /* SearchController.swift */; };
 		D866E12D1EA766F50024E9D7 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */; };
 		D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4A7911EA44EA6005B431D /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 		D81CC0601EADE70500798F09 /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		D81CC0621EADE8EE00798F09 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D81CC0641EADEC3000798F09 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		D81CC0661EAED9DF00798F09 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D81CC0681EAF049500798F09 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D866E12A1EA7631E0024E9D7 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		D8A4A78E1EA44EA6005B431D /* Instragram20170417.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instragram20170417.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +204,8 @@
 				D81CC0601EADE70500798F09 /* ChatController.swift */,
 				D81CC0621EADE8EE00798F09 /* ChatCell.swift */,
 				D81CC0641EADEC3000798F09 /* ChatView.swift */,
+				D81CC0661EAED9DF00798F09 /* Message.swift */,
+				D81CC0681EAF049500798F09 /* MessageCell.swift */,
 			);
 			path = Instragram20170417;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				D8A4A7941EA44EA6005B431D /* RegisterController.swift in Sources */,
 				D81CC0651EADEC3000798F09 /* ChatView.swift in Sources */,
 				D866E12D1EA766F50024E9D7 /* UserSearchCell.swift in Sources */,
+				D81CC0691EAF049500798F09 /* MessageCell.swift in Sources */,
 				D8EA16A91EA729610071AB73 /* User.swift in Sources */,
 				D8EA16A31EA5EF4D0071AB73 /* Post.swift in Sources */,
 				D8EA16991EA59CA90071AB73 /* PhotoCollectionViewController.swift in Sources */,
@@ -354,6 +361,7 @@
 				D81CC0631EADE8EE00798F09 /* ChatCell.swift in Sources */,
 				D81CC0611EADE70500798F09 /* ChatController.swift in Sources */,
 				D8EA169B1EA5A6F80071AB73 /* PhotoHeaderCell.swift in Sources */,
+				D81CC0671EAED9DF00798F09 /* Message.swift in Sources */,
 				D8EA16A71EA615A20071AB73 /* FeedCell.swift in Sources */,
 				D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */,
 				D8EA16971EA4A4060071AB73 /* headercell.swift in Sources */,
