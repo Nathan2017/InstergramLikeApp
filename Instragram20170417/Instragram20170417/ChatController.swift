@@ -81,7 +81,9 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
             let mid = snapshot.key
             FIRDatabase.database().reference().child("messages").child(mid).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let medictionary = snapshot.value as? [String:Any] else {return}
-                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["fromId"] as? String : medictionary["toId"] as? String else {return}
+//                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["fromId"] as? String : medictionary["toId"] as? String else {return}
+                                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["toId"] as? String :  medictionary["fromId"] as? String  else {return}
+                print(medictionary["toId"] as? String)
                 self.messagedicitonary[toid] = Message(dictionary: medictionary)
                 
                 self.timer?.invalidate()
@@ -104,6 +106,17 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
         }
         
     }
-
-
+    func pushview(userid:String){
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let chatview = ChatView(collectionViewLayout: layout)
+        chatview.userid = userid
+        self.navigationController?.pushViewController(chatview, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true) 
+            self.navigationItem.setHidesBackButton(true, animated: false)
+        
+    }
 }

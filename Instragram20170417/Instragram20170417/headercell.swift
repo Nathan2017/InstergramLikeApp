@@ -44,9 +44,11 @@ class headercell: UICollectionViewCell {
         guard let currentuid = FIRAuth.auth()?.currentUser?.uid else {return}
         if user?.uid == currentuid {
             editprofilebutton.setTitle("Edit Profile", for: .normal)
+            chatbutton.isHidden = true
         }
         else
         {
+            chatbutton.isHidden = false
             FIRDatabase.database().reference().observeSingleEvent(of: .value, with: { (snapshot) in
                 if snapshot.hasChild("following")
                 {
@@ -118,6 +120,14 @@ class headercell: UICollectionViewCell {
         epfb.addTarget(self, action: #selector(editprofile), for: .touchUpInside)
         return epfb
     }()
+    lazy var chatbutton:UIButton = {
+       let chat = UIButton(type: .system)
+        chat.setTitle("Message", for: .normal)
+        chat.setTitleColor(UIColor.white, for: .normal)
+        chat.backgroundColor = UIColor(red: 100/255, green: 100/255, blue: 200/255, alpha: 1)
+        chat.addTarget(self, action: #selector(showchat), for: .touchUpInside)
+        return chat
+    }()
     let sepview:UIView = {
        let sv = UIView()
         sv.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
@@ -151,6 +161,14 @@ class headercell: UICollectionViewCell {
         addSubview(editprofilebutton)
         //editprofilebutton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         editprofilebutton.anchor(top: nil, left: imageview.rightAnchor, right: rightAnchor, bottom: username.topAnchor, paddingTop: 0, paddingLeft: 12, paddingRight: -12, paddingBottom: 0, width: 0, height: 40)
+        addSubview(chatbutton)
+        chatbutton.anchor(top: nil, left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 50)
+    }
+    var chatcon:ProfileViewController?
+    func showchat()
+    {
+        chatcon?.pushview()
+        
     }
     func editprofile(){
         if self.editprofilebutton.titleLabel?.text == "Follow" {

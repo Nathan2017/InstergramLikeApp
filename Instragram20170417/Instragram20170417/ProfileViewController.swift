@@ -69,6 +69,7 @@ class ProfileViewController: UICollectionViewController,UICollectionViewDelegate
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerid", for: indexPath) as! headercell
+        header.chatcon = self
         header.user = self.user
         return header
     }
@@ -113,5 +114,14 @@ class ProfileViewController: UICollectionViewController,UICollectionViewDelegate
         let navcon = UINavigationController(rootViewController: LoginViewController())
         self.present(navcon, animated: true, completion: nil)
     }
+    func pushview(){
+        let layout = UICollectionViewFlowLayout()
+        let chat = ChatController(collectionViewLayout: layout)
+        guard let messageuserid = self.userid else {return}
+        
+        self.navigationController?.pushViewController(chat, animated: true)
+        chat.pushview(userid: messageuserid)
+    }
+    
 
 }

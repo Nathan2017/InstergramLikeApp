@@ -38,7 +38,8 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         handlerefresh()
     }
     func handlerefresh(){
-        self.posts.removeAll()
+         self.posts.removeAll()
+               print(posts.count)
         fetchallpost()
         fetchfollowpost()
         
@@ -50,13 +51,18 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+ 
         return posts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
         cell.backgroundColor = UIColor.white
-        cell.post = posts[indexPath.item]
+        if posts.count > 0
+        {
+            cell.post = posts[indexPath.item]
+        }
+        
         return cell
     }
     
@@ -94,14 +100,25 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     func fetchfollowpost(){
         guard let userid = FIRAuth.auth()?.currentUser?.uid else {return}
-        FIRDatabase.database().reference().child("following").child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String:Any] else {return}
-            dictionary.forEach({ (key,value) in
-                FIRDatabase.database().fetchuserpost(userid: key, completetion: { (user) in
-                    self.fetchpostwithuser(user: user)
+        print(userid)
+        let ref = FIRDatabase.database().reference().child("following")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(userid) {
+                ref.child(userid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    guard let dictionary = snapshot.value as? [String:Any] else {return}
+                    dictionary.forEach({ (key,value) in
+                        FIRDatabase.database().fetchuserpost(userid: key, completetion: { (user) in
+                            self.fetchpostwithuser(user: user)
+                        })
+                    })
                 })
-            })
+            }
+            else {
+                self.collectionView?.reloadData()
+                return
+            }
         })
+        
     }
 
 }

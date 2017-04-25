@@ -99,8 +99,10 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout {
         
     }
     func handledidshow(){
+        if self.messages.count != 0 {
         let inpath = IndexPath(item: self.messages.count-1, section: 0)
         self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
+        }
     }
     func handlekeyboardhide(notification:Notification){
         containerbottomanchor?.constant = 0
