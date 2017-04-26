@@ -114,24 +114,61 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     }
     func loadmessage(){
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
-        FIRDatabase.database().reference().child("user-messages").child(uid).observe(.childAdded, with: { (snapshot) in
+        guard let uuid = userid else {return}
+        FIRDatabase.database().reference().child("user-messages").child(uid).child(uuid).observe(.childAdded, with: { (snapshot) in
+            let mid = snapshot.key
             FIRDatabase.database().reference().child("messages").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
-                guard let dictionary = snapshot.value as? [String:Any] else {return}
-                let mess = Message(dictionary: dictionary)
-                guard let uuid = self.userid else {return}
-                let partnerid = mess.fromId == FIRAuth.auth()?.currentUser?.uid ? mess.toId : mess.fromId
-                if partnerid == uuid{
-                    self.messages.append(mess)
-                    DispatchQueue.main.async {
-                        
-                        self.collectionView?.reloadData()
-                        let inpath = IndexPath(item: self.messages.count-1, section: 0)
-                        self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
-                    }
-                }
+                                guard let dictionary = snapshot.value as? [String:Any] else {return}
+                                let mess = Message(dictionary: dictionary)
+                                    self.messages.append(mess)
+                                    DispatchQueue.main.async {
                 
+                                        self.collectionView?.reloadData()
+                                        let inpath = IndexPath(item: self.messages.count-1, section: 0)
+                                        self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
+                                    }
                 
-            }, withCancel: nil)
+                                
+                                
+                            }, withCancel: nil)
+
+//            dict?.forEach({ (key,value) in
+//                let ref = FIRDatabase.database().reference().child("messages").child(key)
+//                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                                    guard let dictionary = snapshot.value as? [String:Any] else {return}
+//                                    let mess = Message(dictionary: dictionary)
+//                                    guard let uuid = self.userid else {return}
+//                                    if mid == uuid{
+//                                        self.messages.append(mess)
+//                                        DispatchQueue.main.async {
+//                    
+//                                            self.collectionView?.reloadData()
+//                                            let inpath = IndexPath(item: self.messages.count-1, section: 0)
+//                                            self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
+//                                        }
+//                                    }
+//                                    
+//                                    
+//                                }, withCancel: nil)
+//
+//            })
+//            FIRDatabase.database().reference().child("messages").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
+//                guard let dictionary = snapshot.value as? [String:Any] else {return}
+//                let mess = Message(dictionary: dictionary)
+//                guard let uuid = self.userid else {return}
+//                let partnerid = mess.fromId == FIRAuth.auth()?.currentUser?.uid ? mess.toId : mess.fromId
+//                if partnerid == uuid{
+//                    self.messages.append(mess)
+//                    DispatchQueue.main.async {
+//                        
+//                        self.collectionView?.reloadData()
+//                        let inpath = IndexPath(item: self.messages.count-1, section: 0)
+//                        self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
+//                    }
+//                }
+//                
+//                
+//            }, withCancel: nil)
 
         })
     }
@@ -183,8 +220,8 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout {
         childref.updateChildValues((["fromId":uid,"toId":toid,"text":enterfild.text,"timestampe":timestamp] as? [String:Any])!, withCompletionBlock: { (error, ref) in
             self.enterfild.resignFirstResponder()
             self.enterfild.text = nil
-            FIRDatabase.database().reference().child("user-messages").child(uid).updateChildValues([childref.key:1])
-            FIRDatabase.database().reference().child("user-messages").child(toid).updateChildValues([childref.key:1])
+            FIRDatabase.database().reference().child("user-messages").child(uid).child(toid).updateChildValues([childref.key:1])
+            FIRDatabase.database().reference().child("user-messages").child(toid).child(uid).updateChildValues([childref.key:1])
         })
 
     }

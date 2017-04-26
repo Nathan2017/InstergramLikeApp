@@ -21,6 +21,7 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         let name = NSNotification.Name(rawValue: "autorefresh")
         NotificationCenter.default.addObserver(self, selector: #selector(handleautorefresh), name: name, object: nil)
         navigationItem.title = "News Feed"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handlecamera))
         collectionView?.alwaysBounceVertical = true
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
@@ -33,6 +34,12 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         refreshcontrol = UIRefreshControl()
         refreshcontrol?.addTarget(self, action: #selector(handlerefresh), for: .valueChanged)
         collectionView?.addSubview(refreshcontrol!)
+    }
+    func handlecamera(){
+        print(123)
+        let camera = CameraController()
+        
+        present(camera, animated: true, completion: nil)
     }
     func handleautorefresh(){
         handlerefresh()

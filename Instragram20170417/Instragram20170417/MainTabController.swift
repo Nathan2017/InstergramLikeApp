@@ -50,7 +50,7 @@ class MainTabController: UITabBarController,UITabBarControllerDelegate {
         let view5 = ChatController(collectionViewLayout: layout5)
         let nav5 = UINavigationController(rootViewController: view5)
         
-        nav5.tabBarItem = UITabBarItem(title: "Chats", image: nil, tag: 5)
+        nav5.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "chat"), tag: 5)
 
         UITabBar.appearance().tintColor = UIColor.black
         
