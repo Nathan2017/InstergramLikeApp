@@ -14,6 +14,7 @@
 		D81CC0671EAED9DF00798F09 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0661EAED9DF00798F09 /* Message.swift */; };
 		D81CC0691EAF049500798F09 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC0681EAF049500798F09 /* MessageCell.swift */; };
 		D81CC06B1EB04BF500798F09 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC06A1EB04BF500798F09 /* CameraController.swift */; };
+		D8235EA71EB1CB95000FE862 /* CameraContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8235EA61EB1CB95000FE862 /* CameraContainer.swift */; };
 		D866E12B1EA7631E0024E9D7 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12A1EA7631E0024E9D7 /* SearchController.swift */; };
 		D866E12D1EA766F50024E9D7 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */; };
 		D8A4A7921EA44EA6005B431D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A4A7911EA44EA6005B431D /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		D81CC0661EAED9DF00798F09 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D81CC0681EAF049500798F09 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		D81CC06A1EB04BF500798F09 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		D8235EA61EB1CB95000FE862 /* CameraContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraContainer.swift; sourceTree = "<group>"; };
 		D866E12A1EA7631E0024E9D7 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		D866E12C1EA766F50024E9D7 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		D8A4A78E1EA44EA6005B431D /* Instragram20170417.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instragram20170417.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 		D8A4A7851EA44EA6005B431D = {
 			isa = PBXGroup;
 			children = (
+				D8235EA61EB1CB95000FE862 /* CameraContainer.swift */,
 				D8A4A7901EA44EA6005B431D /* Instragram20170417 */,
 				D8A4A78F1EA44EA6005B431D /* Products */,
 				6453501143D0701636785BC5 /* Pods */,
@@ -360,6 +363,7 @@
 				D8D26B1E1EA47F3400581EDD /* ProfileViewController.swift in Sources */,
 				D8D26B1C1EA471D700581EDD /* MainTabController.swift in Sources */,
 				D8EA169D1EA5AC940071AB73 /* PhotoCell.swift in Sources */,
+				D8235EA71EB1CB95000FE862 /* CameraContainer.swift in Sources */,
 				D866E12B1EA7631E0024E9D7 /* SearchController.swift in Sources */,
 				D8EA169F1EA5C3270071AB73 /* SharePostController.swift in Sources */,
 				D81CC0631EADE8EE00798F09 /* ChatCell.swift in Sources */,
@@ -495,7 +499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X6CYP5Y5C7;
 				INFOPLIST_FILE = Instragram20170417/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = orz.Instragram20170417;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -510,7 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X6CYP5Y5C7;
 				INFOPLIST_FILE = Instragram20170417/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = orz.Instragram20170417;
 				PRODUCT_NAME = "$(TARGET_NAME)";

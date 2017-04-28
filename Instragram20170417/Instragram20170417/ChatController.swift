@@ -82,47 +82,16 @@ class ChatController: UICollectionViewController,UICollectionViewDelegateFlowLay
             FIRDatabase.database().reference().child("user-messages").child(userid).child(partnerid).observe(.childAdded, with: { (snapshot) in
                 let ref2 = FIRDatabase.database().reference().child("messages")
                             FIRDatabase.database().reference().child("messages").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshot) in
-                                print(snapshot)
                 
                                 guard let medictionary = snapshot.value as? [String:Any] else {return}
                                 self.messagedicitonary[partnerid] = Message(dictionary: medictionary)
                 
                                 self.timer?.invalidate()
-                                self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.handlereload), userInfo: nil, repeats: false)
+                                self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.handlereload), userInfo: nil, repeats: false)
                                 
                             }, withCancel: nil)
 
             }, withCancel: nil)
-//            let dict = snapshot.value as? [String:Any]
-//            dict?.forEach({ (key,value) in
-//                print(key)
-//                let ref2 = FIRDatabase.database().reference().child("messages").child(key)
-//                ref2.observeSingleEvent(of: .value, with: { (snapshot) in
-//                    
-//                                    guard let medictionary = snapshot.value as? [String:Any] else {return}
-//                                    self.messagedicitonary[mid] = Message(dictionary: medictionary)
-//                    
-//                                    self.timer?.invalidate()
-//                                    self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.handlereload), userInfo: nil, repeats: false)
-//                                    
-//                                }, withCancel: nil)
-//
-//            })
-            
-//            let ref2 = FIRDatabase.database().reference().child("messages")
-//            FIRDatabase.database().reference().child("messages").child(mid).observeSingleEvent(of: .value, with: { (snapshot) in
-//                print(snapshot)
-//                
-//                guard let medictionary = snapshot.value as? [String:Any] else {return}
-////                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["fromId"] as? String : medictionary["toId"] as? String else {return}
-//                                guard let toid:String = medictionary["fromId"] as? String == userid ? medictionary["toId"] as? String :  medictionary["fromId"] as? String  else {return}
-//                print(medictionary["toId"] as? String)
-//                self.messagedicitonary[snapshot.key] = Message(dictionary: medictionary)
-//                
-//                self.timer?.invalidate()
-//                self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.handlereload), userInfo: nil, repeats: false)
-//                
-//            }, withCancel: nil)
             
         })
         

@@ -34,10 +34,12 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         refreshcontrol = UIRefreshControl()
         refreshcontrol?.addTarget(self, action: #selector(handlerefresh), for: .valueChanged)
         collectionView?.addSubview(refreshcontrol!)
+        
     }
     func handlecamera(){
         print(123)
-        let camera = CameraController()
+            let camera = CameraController()
+        
         
         present(camera, animated: true, completion: nil)
     }
@@ -46,7 +48,6 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     func handlerefresh(){
          self.posts.removeAll()
-               print(posts.count)
         fetchallpost()
         fetchfollowpost()
         
@@ -107,7 +108,6 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     func fetchfollowpost(){
         guard let userid = FIRAuth.auth()?.currentUser?.uid else {return}
-        print(userid)
         let ref = FIRDatabase.database().reference().child("following")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(userid) {

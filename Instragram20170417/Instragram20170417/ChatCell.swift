@@ -13,13 +13,25 @@ class ChatCell: UICollectionViewCell {
         didSet{
             guard let partnerid = FIRAuth.auth()?.currentUser?.uid == message?.toId ? message?.fromId : message?.toId else {return}
             guard let toid = message?.toId else {return}
-            guard let text = message?.text else {return}
+            if let text = message?.text {
+                messagelabel.text = text
+            }
+            else if let msgimage = message?.imageurl{
+                if FIRAuth.auth()?.currentUser?.uid == message?.fromId {
+                    self.messagelabel.text = "You send an image"
+                }
+                else if FIRAuth.auth()?.currentUser?.uid == message?.toId{
+                    FIRDatabase.database().fetchuserpost(userid: (message?.fromId)!, completetion: { (user) in
+                        self.messagelabel.text = "\(user.username) send an image"
+                    })
+                }
+            }
             guard let date:Date = message?.timestamp else {return}
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "hh:mm a"
             let datestring = dateformatter.string(from: date)
             timelabel.text = datestring
-            messagelabel.text = text
+            
             FIRDatabase.database().fetchuserpost(userid: partnerid) { (user) in
                 let imageurl = user.imageurl
                 let username = user.username
@@ -114,7 +126,6 @@ class ChatCell: UICollectionViewCell {
         messagelabel.anchor(top: usernamelabel.bottomAnchor, left: usernamelabel.leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: -30, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0)
         
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

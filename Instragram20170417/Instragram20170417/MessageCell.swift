@@ -9,9 +9,39 @@
 import UIKit
 import Firebase
 class MessageCell: UICollectionViewCell {
+    var chatviewcontrol:ChatView?
     var message:Message?{
         didSet{
-            textview.text = message?.text
+            if let messagetext = message?.text {
+               textview.text = messagetext
+            }
+            else if let imageurls = message?.imageurl {
+                if let cacheimage = imagecache[imageurls] {
+                    self.messageimageview.image = cacheimage
+                }
+                else
+                {
+                    guard let url = URL(string: imageurls) else {return}
+                    URLSession.shared.dataTask(with: url) { (data, response, error) in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        if url.absoluteString != self.message?.imageurl {
+                            return
+                        }
+                        guard let data = data else {return}
+                        let image = UIImage(data: data)
+                        imagecache[url.absoluteString] = image
+                        DispatchQueue.main.async {
+                            self.messageimageview.image = image
+                        }
+                        
+                        }.resume()
+                }
+
+            }
+            
             guard let toid = message?.fromId == FIRAuth.auth()?.currentUser?.uid ? message?.toId : message?.fromId else {return}
             FIRDatabase.database().fetchuserpost(userid: toid) { (user) in
                 let imageurl = user.imageurl
@@ -55,6 +85,7 @@ class MessageCell: UICollectionViewCell {
         tv.isEditable = false
         tv.backgroundColor = UIColor.clear
         tv.textColor = UIColor.white
+        tv.dataDetectorTypes = UIDataDetectorTypes.all
         tv.font = UIFont.systemFont(ofSize: 16)
         return tv
         
@@ -68,6 +99,13 @@ class MessageCell: UICollectionViewCell {
         //piv.backgroundColor = UIColor.red
         return piv
         
+        
+    }()
+    lazy var messageimageview:UIImageView = {
+       let miv = UIImageView()
+        miv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlezoomin)))
+        miv.isUserInteractionEnabled = true
+        return miv
         
     }()
     var bubbleviewwidthanchor:NSLayoutConstraint?
@@ -90,9 +128,15 @@ class MessageCell: UICollectionViewCell {
         textview.widthAnchor.constraint(equalTo: bubbleview.widthAnchor,constant:-20).isActive = true
         textview.anchor(top: topAnchor, left: nil, right: nil, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0)
        // textview.anchor(top: topAnchor, left: nil, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: -10, paddingBottom: 0, width: 200, height: 0)
+        bubbleview.addSubview(messageimageview)
+        messageimageview.anchor(top: bubbleview.topAnchor, left: bubbleview.leftAnchor, right: bubbleview.rightAnchor, bottom: bubbleview.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 0, height: 0)
     }
     override func prepareForReuse() {
        // profileimageview.image = nil
+    }
+    func handlezoomin(taprecognizer:UITapGestureRecognizer){
+        guard let imageview = taprecognizer.view as? UIImageView else {return}
+        chatviewcontrol?.zoomin(imageview:imageview)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
