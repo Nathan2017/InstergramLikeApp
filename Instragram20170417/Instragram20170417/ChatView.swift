@@ -103,15 +103,18 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout,UI
         containerbottomanchor?.constant = -keyboardframe.height
         UIView.animate(withDuration: keyboardtime) {
             self.view.layoutIfNeeded()
+
         }
         
     }
     func handledidshow(){
-
+        if((collectionView?.contentOffset.y)! >= ((collectionView?.contentSize.height)! - (collectionView?.frame.size.height)!)) {
             if self.messages.count > 0 {
                 let inpath = IndexPath(item: self.messages.count-1, section: 0)
                 self.collectionView?.scrollToItem(at: inpath , at: .top, animated: true)
             }
+        }
+        
         
         
         
@@ -268,6 +271,7 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout,UI
     var startimageview:UIImageView?
     func zoomin(imageview:UIImageView){
         startframe = imageview.superview?.convert(imageview.frame, to: nil)
+        print(startframe)
         self.startimageview = imageview
         self.startimageview?.isHidden = true
         let startimageview = UIImageView(frame: startframe!)
@@ -282,11 +286,14 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout,UI
         blackview?.alpha = 0
         keywindow.addSubview(blackview!)
         keywindow.addSubview(startimageview)
+        self.enterfild.resignFirstResponder()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackview?.alpha = 1
+            
             let height = (self.startframe?.height)!/(self.startframe?.width)! * keywindow.screen.bounds.width
             startimageview.frame = CGRect(x: 0, y: 0, width: keywindow.screen.bounds.width, height: height)
             startimageview.center = keywindow.center
+            
         }, completion: { (complete:Bool) in
             
         })
@@ -296,7 +303,7 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout,UI
             zoomoutview.layer.cornerRadius = 16
             zoomoutview.clipsToBounds = true
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
-                zoomoutview.frame = self.startframe!
+                zoomoutview.frame = (self.startimageview?.superview?.convert((self.startimageview?.frame)!, to: nil))!
                 self.blackview?.alpha = 0
             }, completion: { (complete:Bool) in
                 zoomoutview.removeFromSuperview()
