@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 private let reuseIdentifier = "Cell"
 
-class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLayout,CommentDelegate {
     var posts = [Post]()
     var username:String?
     var user:User?
@@ -37,7 +37,6 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         
     }
     func handlecamera(){
-        print(123)
             let camera = CameraController()
         
         
@@ -66,6 +65,7 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
         cell.backgroundColor = UIColor.white
+        cell.delegate = self
         if posts.count > 0
         {
             cell.post = posts[indexPath.item]
@@ -75,7 +75,7 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var height:CGFloat = 12+40+12
+        var height:CGFloat = 12+40+12+50
         height += view.frame.width
         height += 100
         return CGSize(width: view.frame.width, height: height)
@@ -128,4 +128,11 @@ class FeedController: UICollectionViewController,UICollectionViewDelegateFlowLay
         
     }
 
+    func presentcomment(post:Post) {
+        //print(post.caption)
+        let layout = UICollectionViewFlowLayout()
+        let col = CommentController(collectionViewLayout: layout)
+        col.post = post
+        self.navigationController?.pushViewController(col , animated: true)
+    }
 }

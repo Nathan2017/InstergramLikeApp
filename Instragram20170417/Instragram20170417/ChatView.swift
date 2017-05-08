@@ -65,6 +65,10 @@ class ChatView: UICollectionViewController,UICollectionViewDelegateFlowLayout,UI
         super.viewDidDisappear(true)
         NotificationCenter.default.removeObserver(self)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupkeyboardmove()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true

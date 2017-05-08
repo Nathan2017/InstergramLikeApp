@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol CommentDelegate {
+    func presentcomment(post:Post)
+}
 class FeedCell: UICollectionViewCell {
     var post:Post?{
         didSet{
@@ -56,6 +58,13 @@ class FeedCell: UICollectionViewCell {
         return cp
         
     }()
+    lazy var commentbutton:UIButton = {
+       let cmb = UIButton(type: .system)
+        cmb.addTarget(self, action: #selector(handlecomment), for: .touchUpInside)
+        cmb.setTitle("Comment", for: .normal)
+        return cmb
+        
+    }()
     func loadimage2(imageurl:String,view:UIImageView,domatch:Bool){
         if let cacheimage = imagecache[imageurl] {
            
@@ -102,14 +111,21 @@ class FeedCell: UICollectionViewCell {
         moreoptionbutton.anchor(top: imageview.topAnchor, left: nil, right: rightAnchor, bottom: imageview.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 50, height: 0)
         addSubview(username)
         username.anchor(top: imageview.topAnchor, left: imageview.rightAnchor, right: moreoptionbutton.leftAnchor, bottom: imageview.bottomAnchor, paddingTop: 0, paddingLeft: 12, paddingRight: -12, paddingBottom: 0, width: 0, height: 0)
+        addSubview(commentbutton)
+        commentbutton.anchor(top: postimage.bottomAnchor, left: leftAnchor, right: nil, bottom: nil, paddingTop: 0, paddingLeft: 10, paddingRight: 0, paddingBottom: 0, width: 100, height: 50)
         addSubview(caption)
-        caption.anchor(top: postimage.bottomAnchor, left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 12, paddingRight: -12, paddingBottom: 0, width: 0, height: 0)
+        caption.anchor(top: commentbutton.bottomAnchor, left: leftAnchor, right: rightAnchor, bottom: bottomAnchor, paddingTop: 0, paddingLeft: 12, paddingRight: -12, paddingBottom: 0, width: 0, height: 0)
         
     }
     override func prepareForReuse() {
         postimage.image = nil
         imageview.image = nil
         username.text = nil
+    }
+    var delegate:CommentDelegate?
+    func handlecomment(){
+        guard let post = self.post else {return}
+        delegate?.presentcomment(post:post)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
